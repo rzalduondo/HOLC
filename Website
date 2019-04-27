@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+<meta charset='utf-8' />
+<title>Oakland Redlining</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+ 
+<style>
+body { margin:0; padding:0; }
+#map { width:512px; height:512px; border:3px solid #ccc top:0; bottom:0; width:100%; }
+  </style> 
+  <style>
+  
+  .mapboxgl-popup {
+max-width: 500px;
+font: 15px/20px 'Courier New', Arial, Helvetica, sans-serif;
+color: #404040
+}
+  </style> 
+  <style>
+#menu {
+background: #ffffff;
+position: center;
+z-index: 1;
+top: 10px;
+right: 520px;
+border-radius: 0px;
+width: 120px;
+border: 4px solid rgba(255,255,255);
+font-family: 'Open Sans', sans-serif;
+}
+ 
+#menu a {
+font-size: 13px;
+color: #404040;
+display: block;
+margin: 2;
+padding: 2;
+padding: 10px;
+text-decoration: none;
+border-bottom: 4px solid rgba(255,255,255);
+text-align: center;
+}
+  
+#menu a:last-child {
+border: 0px;
+}
+ 
+#menu a:hover {
+background-color: #e3e3e3;
+color: #000000;
+}
+ 
+#menu a.active {
+background-color: #00a390;
+color: #ffffff;
+  
+}
+#menu a.active:hover {
+background: #e3e3e3;
+}
+</style>
+ 
+ 
+
+</head>
+  
+<style>html {
+    background: #ffffff;
+    background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
+    -webkit-font-smoothing: antialiased;
+}
+ 
+body {
+    background: #000000;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+    color: #ffffff;
+    font-family: "Helvetica", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 350;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 2em 2em 4em;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 1.3;
+    font-size: 25px;
+}
+h1 {
+    font-size:45px;
+}
+        
+        
+h2 {
+    margin-top: 1.3em;
+    font-size:20px;
+}
+a {
+    color: #0083e8;
+}
+img {
+    animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
+    background: transparent;
+    border: 10px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    display: block;
+    margin: 1.3em auto;
+    max-width: 95%;
+}
+</style>
+
+  
+ 
+<body onload="init()"> 
+        <h1>HOLC Redlining Maps and Oakland Crime Reports</h1>
+        <h2>The following map provides insight in how historical "residential security maps" created in the 1930's have had lasting effects on the material and social landscapes in Oakland, California. This thematic map displays these HOLC security maps overlayed with Oakland Crimewatch data and Homeless Services Reports from January 19, 2019-March 19, 2019</h2>
+        
+        <h3>HOLC Security Maps</h3>
+        <p>
+            In the 1930's during the New Deal, the Home Owners' Loan Corporation created neighborhood risk assessment maps for dozens of cities across the country. These maps were used to assign a rating from Best to Desireable to Declining to Hazardous. This rating often signified and determined each neighborhood's racial and ethnic makeup, housing conditions, and access to public facilities. Using these maps and selective credit programs, private and public institutions denied loans to racial minorities and "undesirable" populations. The maps were accompanied by written reports of each area. Reports include descriptions/characteristics of the area including terrain, median cost of living, value of land, average household income, etc. One description for area D-4 reads "This is a high grade Negro area and good loans can be
+made here if care is exercised". These maps are evidence of institutional racial discrimination, known as "redlining" and its effects are still seen today.
+        </p>
+    
+         <a href="OaklandBerkeleyHOLC.jpg">
+            <img alt="HOLC Security Map of Oakland and Berkeley" src="http://ww2.kqed.org/lowdown/wp-content/uploads/sites/26/2015/07/OaklandBerkeleyHOLCmap-MED.jpg" />
+        </a>
+          <a href="http://salt.umd.edu/T-RACES/data/oak/ad/ad0111.pdf">Security Map Description Example</a>
+        <h4>Oakland Crimewatch Reports</h4>
+        <p>
+           
+          The Oakland Police Department provides crime data to the public through the City of Oakland’s Crime Watch website. This data is presented in a geographic format and is sorted by violent and non-violent crime. Violent categories: Homicide, Arson, Robbery, Weapons, Vandalism, Sex Crimes, and Assault. Non-violent categories: Drugs/Alcohol Violations, Theft, DUI, Fraud, Burglary, Disturbing the Peace, and Motor Vehicle Theft
+        </p>
+        
+
+        <h5>Oakland Homeless Ecampment Service Requests</h5>
+        <p>
+            This is a visualization of service requests recieved by the Oakland Call Center (311) for homeless encampments. Types of service requests include: Illegal Dumping, Parks, Homeless Encampment Clean, "Keep Oakland Clean and Beautiful" Request, and Electrical Violations. 
+        </p>
+        
+        <h6>Analysis and Extra Resources</h6>
+        <p>
+           Historic uneven lending practices have contributed to racial segregation in the East Bay. This has had very material and fatal effects on communities as represented by this data. Both violent and non-violent crime and homelessness is concentrated around areas that have been rated as D=Hazardous in the HOLC Security Maps. The best rated areas in green have significantly less crime and homelessness, and crime is limited to mostly non-violent crime. There is a direct correlation between racial segregation and crime in this area.
+        </p>
+        <ul>
+            <li><a href="https://data.oaklandnet.com/">City of Oakland Open Data</a></li>
+            <li><a href="https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8">University of Richmond HOLC Security Maps</a></li>
+            <li><a href="https://appam.confex.com/appam/2018/webprogram/Paper27686.html">HOLC Security Maps as Structural Segregation</a></li>
+        </ul>
+
+  
+    </body>
+  
+  <body>
+        
+<nav id="menu"></nav>
+<div id="map"></div>
+      
+
+<script>
+    // Set bounds to San Francisco
+var bounds = [
+[-122.45333152, 37.673997304], // Southwest coordinates
+[-122.043686, 37.965421]  // Northeast coordinates
+];
+    
+  //toggle menu
+mapboxgl.accessToken = 'pk.eyJ1IjoicnphbGR1b25kbyIsImEiOiJjanMzcTkwOW0yMnNqNDNvOW1maXB3MDF3In0.uz2ku9_hY2oecSyl8LHnZg';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/rzalduondo/cjtkkwdtl1trn1focm51bxfgd',
+zoom: 11,
+center: [-122.271111, 37.804363],
+maxBounds: bounds // Sets bounds as max
+});
+ 
+map.on('load', function () {
+  //homelesscalls menu
+map.addSource('Homeless Service Requests', {
+type: 'vector',
+url: 'mapbox://mapbox.2opop9hr'
+});
+map.addLayer({
+'id': 'Homeless Service Requests',
+'type': 'circle',
+'source': 'Homeless Service Requests',
+'layout': {
+'visibility': 'visible'
+},
+'source-layer': 'homeless_90_days_Oakland-0bgb1n'
+});
+  
+ //crimewatch menu
+map.addSource('Crime Watch', {
+type: 'vector',
+url: 'mapbox://mapbox.mapbox-terrain-v2'
+});
+map.addLayer({
+'id': 'Crime Watch',
+'type': 'circle',
+'source': 'Crime Watch',
+'layout': {
+'visibility': 'visible'
+},
+  'source-layer': 'CrimeWatchOakland_0-4w9lig',
+});
+  
+   //HOLC menu
+map.addSource('HOLC Map', {
+type: 'vector',
+url: 'mapbox://mapbox.mapbox-terrain-v2'
+});
+map.addLayer({
+'id': 'HOLC Map',
+'type': 'fill',
+'source': 'HOLC Map',
+'layout': {
+'visibility': 'visible'
+},
+  'source-layer': 'Archive-bzqs3d',
+});
+  
+});
+ 
+var toggleableLayerIds = ['Crime Watch', 'Homeless Service Requests', 'HOLC Map'];
+ 
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+var id = toggleableLayerIds[i];
+ 
+var link = document.createElement('a');
+link.href = '#';
+link.className = 'active';
+link.textContent = id;
+ 
+link.onclick = function (e) {
+var clickedLayer = this.textContent;
+e.preventDefault();
+e.stopPropagation();
+ 
+var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+ 
+if (visibility === 'visible') {
+map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+this.className = '';
+} else {
+this.className = 'active';
+map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+}
+};
+ 
+var layers = document.getElementById('menu');
+layers.appendChild(link);
+}
+  </script>
+ 
+  
+  
+ <script>
+    
+   // Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
+   
+  </script>
+  <script>
+    
+// open popup on click
+    //crimewatch
+map.on('click', 'Crime Watch', function (e) {
+var coordinates = e.features[0].geometry.coordinates.slice();
+var description = e.features[0].properties.DESCRIPTION;
+  
+ 
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;  
+} 
+  
+new mapboxgl.Popup()
+.setLngLat(coordinates)
+.setHTML(description)
+.addTo(map);
+});
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'Crime Watch', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'Crime Watch', function () {
+map.getCanvas().style.cursor = '';
+});
+  </script>
+  
+  <script>
+      
+// open popup on click
+    //homelesscalls
+map.on('click', 'Homeless Service Requests', function (e) {
+var coordinates = e.features[0].geometry.coordinates.slice();
+var description = e.features[0].properties.REQCATEGORY;
+ 
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+}
+  
+new mapboxgl.Popup()
+.setLngLat(coordinates)
+.setHTML(description)
+.addTo(map);
+});
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'Homeless Service Requests', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'Homeless Service Requests', function () {
+map.getCanvas().style.cursor = '';
+  });
+  
+  </script>
+  
+  <script>
+// open popup on click
+    //HOLC Map
+   
+map.on('click', 'HOLC Map', function (e) {
+var coordinates = e.features[0].geometry.coordinates.slice();
+var description = e.features[0].properties.NAM3;
+while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+new mapboxgl.Popup()
+.setLngLat(e.lngLat)
+.setHTML(description)
+.addTo(map);
+});
+ 
+// Change the cursor to a pointer when the mouse is over the states layer.
+map.on('mouseenter', 'HOLC Map', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'HOLC Map', function () {
+map.getCanvas().style.cursor = '';
+});
+    
+    
+  </script>
+ 
+ 
+  </body>
+
+</html>
