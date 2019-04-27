@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1348.17">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 17.0px Times; -webkit-text-stroke: #eeeb82}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 17.0px Times; -webkit-text-stroke: #eeeb82; min-height: 20.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta charset='utf-8' /&gt;</span></p>
+<p class="p1"><span class="s1">&lt;title&gt;Oakland Redlining&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' /&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;style&gt;</span></p>
+<p class="p1"><span class="s1">body { margin:0; padding:0; }</span></p>
+<p class="p1"><span class="s1">#map { width:512px; height:512px; border:3px solid #ccc top:0; bottom:0; width:100%; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>.mapboxgl-popup {</span></p>
+<p class="p1"><span class="s1">max-width: 500px;</span></p>
+<p class="p1"><span class="s1">font: 15px/20px 'Courier New', Arial, Helvetica, sans-serif;</span></p>
+<p class="p1"><span class="s1">color: #404040</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1">#menu {</span></p>
+<p class="p1"><span class="s1">background: #ffffff;</span></p>
+<p class="p1"><span class="s1">position: center;</span></p>
+<p class="p1"><span class="s1">z-index: 1;</span></p>
+<p class="p1"><span class="s1">top: 10px;</span></p>
+<p class="p1"><span class="s1">right: 520px;</span></p>
+<p class="p1"><span class="s1">border-radius: 0px;</span></p>
+<p class="p1"><span class="s1">width: 120px;</span></p>
+<p class="p1"><span class="s1">border: 4px solid rgba(255,255,255);</span></p>
+<p class="p1"><span class="s1">font-family: 'Open Sans', sans-serif;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">#menu a {</span></p>
+<p class="p1"><span class="s1">font-size: 13px;</span></p>
+<p class="p1"><span class="s1">color: #404040;</span></p>
+<p class="p1"><span class="s1">display: block;</span></p>
+<p class="p1"><span class="s1">margin: 2;</span></p>
+<p class="p1"><span class="s1">padding: 2;</span></p>
+<p class="p1"><span class="s1">padding: 10px;</span></p>
+<p class="p1"><span class="s1">text-decoration: none;</span></p>
+<p class="p1"><span class="s1">border-bottom: 4px solid rgba(255,255,255);</span></p>
+<p class="p1"><span class="s1">text-align: center;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1">#menu a:last-child {</span></p>
+<p class="p1"><span class="s1">border: 0px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">#menu a:hover {</span></p>
+<p class="p1"><span class="s1">background-color: #e3e3e3;</span></p>
+<p class="p1"><span class="s1">color: #000000;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">#menu a.active {</span></p>
+<p class="p1"><span class="s1">background-color: #00a390;</span></p>
+<p class="p1"><span class="s1">color: #ffffff;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">#menu a.active:hover {</span></p>
+<p class="p1"><span class="s1">background: #e3e3e3;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1">&lt;style&gt;html {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>background: #ffffff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>-webkit-font-smoothing: antialiased;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>background: #000000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>color: #ffffff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-family: "Helvetica", Helvetica, Arial, sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size: 18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-weight: 350;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>line-height: 1.5;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin: 0 auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>max-width: 800px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>padding: 2em 2em 4em;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">h1, h2, h3, h4, h5, h6 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>color: #ffffff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-weight: 500;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>line-height: 1.3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size: 25px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">h1 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size:45px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1">h2 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin-top: 1.3em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size:20px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">a {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>color: #0083e8;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">img {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>background: transparent;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border: 10px solid rgba(0, 0, 0, 0.12);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-radius: 4px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>display: block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin: 1.3em auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>max-width: 95%;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;body onload="init()"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h1&gt;HOLC Redlining Maps and Oakland Crime Reports&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h2&gt;The following map provides insight in how historical "residential security maps" created in the 1930's have had lasting effects on the material and social landscapes in Oakland, California. This thematic map displays these HOLC security maps overlayed with Oakland Crimewatch data and Homeless Services Reports from January 19, 2019-March 19, 2019&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3&gt;HOLC Security Maps&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>In the 1930's during the New Deal, the Home Owners' Loan Corporation created neighborhood risk assessment maps for dozens of cities across the country. These maps were used to assign a rating from Best to Desireable to Declining to Hazardous. This rating often signified and determined each neighborhood's racial and ethnic makeup, housing conditions, and access to public facilities. Using these maps and selective credit programs, private and public institutions denied loans to racial minorities and "undesirable" populations. The maps were accompanied by written reports of each area. Reports include descriptions/characteristics of the area including terrain, median cost of living, value of land, average household income, etc. One description for area D-4 reads "This is a high grade Negro area and good loans can be</span></p>
+<p class="p1"><span class="s1">made here if care is exercised". These maps are evidence of institutional racial discrimination, known as "redlining" and its effects are still seen today.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">         </span>&lt;a href="OaklandBerkeleyHOLC.jpg"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;img alt="HOLC Security Map of Oakland and Berkeley" src="http://ww2.kqed.org/lowdown/wp-content/uploads/sites/26/2015/07/OaklandBerkeleyHOLCmap-MED.jpg" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;a href="http://salt.umd.edu/T-RACES/data/oak/ad/ad0111.pdf"&gt;Security Map Description Example&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h4&gt;Oakland Crimewatch Reports&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">           </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>The Oakland Police Department provides crime data to the public through the City of Oakland’s Crime Watch website. This data is presented in a geographic format and is sorted by violent and non-violent crime. Violent categories: Homicide, Arson, Robbery, Weapons, Vandalism, Sex Crimes, and Assault. Non-violent categories: Drugs/Alcohol Violations, Theft, DUI, Fraud, Burglary, Disturbing the Peace, and Motor Vehicle Theft</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h5&gt;Oakland Homeless Ecampment Service Requests&lt;/h5&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>This is a visualization of service requests recieved by the Oakland Call Center (311) for homeless encampments. Types of service requests include: Illegal Dumping, Parks, Homeless Encampment Clean, "Keep Oakland Clean and Beautiful" Request, and Electrical Violations.<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h6&gt;Analysis and Extra Resources&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">           </span>Historic uneven lending practices have contributed to racial segregation in the East Bay. This has had very material and fatal effects on communities as represented by this data. Both violent and non-violent crime and homelessness is concentrated around areas that have been rated as D=Hazardous in the HOLC Security Maps. The best rated areas in green have significantly less crime and homelessness, and crime is limited to mostly non-violent crime. There is a direct correlation between racial segregation and crime in this area.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="https://data.oaklandnet.com/"&gt;City of Oakland Open Data&lt;/a&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&amp;opacity=0.8"&gt;University of Richmond HOLC Security Maps&lt;/a&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="https://appam.confex.com/appam/2018/webprogram/Paper27686.html"&gt;HOLC Security Maps as Structural Segregation&lt;/a&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/body&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1">&lt;nav id="menu"&gt;&lt;/nav&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div id="map"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Set bounds to San Francisco</span></p>
+<p class="p1"><span class="s1">var bounds = [</span></p>
+<p class="p1"><span class="s1">[-122.45333152, 37.673997304], // Southwest coordinates</span></p>
+<p class="p1"><span class="s1">[-122.043686, 37.965421]<span class="Apple-converted-space">  </span>// Northeast coordinates</span></p>
+<p class="p1"><span class="s1">];</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>//toggle menu</span></p>
+<p class="p1"><span class="s1">mapboxgl.accessToken = 'pk.eyJ1IjoicnphbGR1b25kbyIsImEiOiJjanMzcTkwOW0yMnNqNDNvOW1maXB3MDF3In0.uz2ku9_hY2oecSyl8LHnZg';</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">var map = new mapboxgl.Map({</span></p>
+<p class="p1"><span class="s1">container: 'map',</span></p>
+<p class="p1"><span class="s1">style: 'mapbox://styles/rzalduondo/cjtkkwdtl1trn1focm51bxfgd',</span></p>
+<p class="p1"><span class="s1">zoom: 11,</span></p>
+<p class="p1"><span class="s1">center: [-122.271111, 37.804363],</span></p>
+<p class="p1"><span class="s1">maxBounds: bounds // Sets bounds as max</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">map.on('load', function () {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>//homelesscalls menu</span></p>
+<p class="p1"><span class="s1">map.addSource('Homeless Service Requests', {</span></p>
+<p class="p1"><span class="s1">type: 'vector',</span></p>
+<p class="p1"><span class="s1">url: 'mapbox://mapbox.2opop9hr'</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">map.addLayer({</span></p>
+<p class="p1"><span class="s1">'id': 'Homeless Service Requests',</span></p>
+<p class="p1"><span class="s1">'type': 'circle',</span></p>
+<p class="p1"><span class="s1">'source': 'Homeless Service Requests',</span></p>
+<p class="p1"><span class="s1">'layout': {</span></p>
+<p class="p1"><span class="s1">'visibility': 'visible'</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1">'source-layer': 'homeless_90_days_Oakland-0bgb1n'</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>//crimewatch menu</span></p>
+<p class="p1"><span class="s1">map.addSource('Crime Watch', {</span></p>
+<p class="p1"><span class="s1">type: 'vector',</span></p>
+<p class="p1"><span class="s1">url: 'mapbox://mapbox.mapbox-terrain-v2'</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">map.addLayer({</span></p>
+<p class="p1"><span class="s1">'id': 'Crime Watch',</span></p>
+<p class="p1"><span class="s1">'type': 'circle',</span></p>
+<p class="p1"><span class="s1">'source': 'Crime Watch',</span></p>
+<p class="p1"><span class="s1">'layout': {</span></p>
+<p class="p1"><span class="s1">'visibility': 'visible'</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>'source-layer': 'CrimeWatchOakland_0-4w9lig',</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>//HOLC menu</span></p>
+<p class="p1"><span class="s1">map.addSource('HOLC Map', {</span></p>
+<p class="p1"><span class="s1">type: 'vector',</span></p>
+<p class="p1"><span class="s1">url: 'mapbox://mapbox.mapbox-terrain-v2'</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">map.addLayer({</span></p>
+<p class="p1"><span class="s1">'id': 'HOLC Map',</span></p>
+<p class="p1"><span class="s1">'type': 'fill',</span></p>
+<p class="p1"><span class="s1">'source': 'HOLC Map',</span></p>
+<p class="p1"><span class="s1">'layout': {</span></p>
+<p class="p1"><span class="s1">'visibility': 'visible'</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>'source-layer': 'Archive-bzqs3d',</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">var toggleableLayerIds = ['Crime Watch', 'Homeless Service Requests', 'HOLC Map'];</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">for (var i = 0; i &lt; toggleableLayerIds.length; i++) {</span></p>
+<p class="p1"><span class="s1">var id = toggleableLayerIds[i];</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">var link = document.createElement('a');</span></p>
+<p class="p1"><span class="s1">link.href = '#';</span></p>
+<p class="p1"><span class="s1">link.className = 'active';</span></p>
+<p class="p1"><span class="s1">link.textContent = id;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">link.onclick = function (e) {</span></p>
+<p class="p1"><span class="s1">var clickedLayer = this.textContent;</span></p>
+<p class="p1"><span class="s1">e.preventDefault();</span></p>
+<p class="p1"><span class="s1">e.stopPropagation();</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">var visibility = map.getLayoutProperty(clickedLayer, 'visibility');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">if (visibility === 'visible') {</span></p>
+<p class="p1"><span class="s1">map.setLayoutProperty(clickedLayer, 'visibility', 'none');</span></p>
+<p class="p1"><span class="s1">this.className = '';</span></p>
+<p class="p1"><span class="s1">} else {</span></p>
+<p class="p1"><span class="s1">this.className = 'active';</span></p>
+<p class="p1"><span class="s1">map.setLayoutProperty(clickedLayer, 'visibility', 'visible');</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">};</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">var layers = document.getElementById('menu');</span></p>
+<p class="p1"><span class="s1">layers.appendChild(link);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;script&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>// Add zoom and rotation controls to the map.</span></p>
+<p class="p1"><span class="s1">map.addControl(new mapboxgl.NavigationControl());</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">   </span></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1">// open popup on click</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>//crimewatch</span></p>
+<p class="p1"><span class="s1">map.on('click', 'Crime Watch', function (e) {</span></p>
+<p class="p1"><span class="s1">var coordinates = e.features[0].geometry.coordinates.slice();</span></p>
+<p class="p1"><span class="s1">var description = e.features[0].properties.DESCRIPTION;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">// Ensure that if the map is zoomed out such that multiple</span></p>
+<p class="p1"><span class="s1">// copies of the feature are visible, the popup appears</span></p>
+<p class="p1"><span class="s1">// over the copy being pointed to.</span></p>
+<p class="p1"><span class="s1">while (Math.abs(e.lngLat.lng - coordinates[0]) &gt; 180) {</span></p>
+<p class="p1"><span class="s1">coordinates[0] += e.lngLat.lng &gt; coordinates[0] ? 360 : -360; <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">}<span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1">new mapboxgl.Popup()</span></p>
+<p class="p1"><span class="s1">.setLngLat(coordinates)</span></p>
+<p class="p1"><span class="s1">.setHTML(description)</span></p>
+<p class="p1"><span class="s1">.addTo(map);</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">// Change the cursor to a pointer when the mouse is over the places layer.</span></p>
+<p class="p1"><span class="s1">map.on('mouseenter', 'Crime Watch', function () {</span></p>
+<p class="p1"><span class="s1">map.getCanvas().style.cursor = 'pointer';</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">// Change it back to a pointer when it leaves.</span></p>
+<p class="p1"><span class="s1">map.on('mouseleave', 'Crime Watch', function () {</span></p>
+<p class="p1"><span class="s1">map.getCanvas().style.cursor = '';</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1">// open popup on click</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>//homelesscalls</span></p>
+<p class="p1"><span class="s1">map.on('click', 'Homeless Service Requests', function (e) {</span></p>
+<p class="p1"><span class="s1">var coordinates = e.features[0].geometry.coordinates.slice();</span></p>
+<p class="p1"><span class="s1">var description = e.features[0].properties.REQCATEGORY;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">// Ensure that if the map is zoomed out such that multiple</span></p>
+<p class="p1"><span class="s1">// copies of the feature are visible, the popup appears</span></p>
+<p class="p1"><span class="s1">// over the copy being pointed to.</span></p>
+<p class="p1"><span class="s1">while (Math.abs(e.lngLat.lng - coordinates[0]) &gt; 180) {</span></p>
+<p class="p1"><span class="s1">coordinates[0] += e.lngLat.lng &gt; coordinates[0] ? 360 : -360;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1">new mapboxgl.Popup()</span></p>
+<p class="p1"><span class="s1">.setLngLat(coordinates)</span></p>
+<p class="p1"><span class="s1">.setHTML(description)</span></p>
+<p class="p1"><span class="s1">.addTo(map);</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">// Change the cursor to a pointer when the mouse is over the places layer.</span></p>
+<p class="p1"><span class="s1">map.on('mouseenter', 'Homeless Service Requests', function () {</span></p>
+<p class="p1"><span class="s1">map.getCanvas().style.cursor = 'pointer';</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">// Change it back to a pointer when it leaves.</span></p>
+<p class="p1"><span class="s1">map.on('mouseleave', 'Homeless Service Requests', function () {</span></p>
+<p class="p1"><span class="s1">map.getCanvas().style.cursor = '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1">// open popup on click</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>//HOLC Map</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">   </span></span></p>
+<p class="p1"><span class="s1">map.on('click', 'HOLC Map', function (e) {</span></p>
+<p class="p1"><span class="s1">var coordinates = e.features[0].geometry.coordinates.slice();</span></p>
+<p class="p1"><span class="s1">var description = e.features[0].properties.NAM3;</span></p>
+<p class="p1"><span class="s1">while (Math.abs(e.lngLat.lng - coordinates[0]) &gt; 180) {</span></p>
+<p class="p1"><span class="s1">coordinates[0] += e.lngLat.lng &gt; coordinates[0] ? 360 : -360;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1">new mapboxgl.Popup()</span></p>
+<p class="p1"><span class="s1">.setLngLat(e.lngLat)</span></p>
+<p class="p1"><span class="s1">.setHTML(description)</span></p>
+<p class="p1"><span class="s1">.addTo(map);</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">// Change the cursor to a pointer when the mouse is over the states layer.</span></p>
+<p class="p1"><span class="s1">map.on('mouseenter', 'HOLC Map', function () {</span></p>
+<p class="p1"><span class="s1">map.getCanvas().style.cursor = 'pointer';</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">// Change it back to a pointer when it leaves.</span></p>
+<p class="p1"><span class="s1">map.on('mouseleave', 'HOLC Map', function () {</span></p>
+<p class="p1"><span class="s1">map.getCanvas().style.cursor = '';</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
